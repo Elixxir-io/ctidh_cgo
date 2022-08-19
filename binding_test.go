@@ -30,6 +30,12 @@ func TestPublicKeyMarshaling(t *testing.T) {
 	require.Equal(t, publicKey3Bytes, publicKeyBytes)
 }
 
+func TestPublicKeyMarshalingLoopy(t *testing.T) {
+	for i := 0; i < 10; i++ {
+		TestPublicKeyMarshaling(t)
+	}
+}
+
 func TestPrivateKeyMarshaling(t *testing.T) {
 	privateKey, _, err := GenerateKeyPair()
 	require.NoError(t, err)
@@ -45,6 +51,12 @@ func TestPrivateKeyMarshaling(t *testing.T) {
 	require.NoError(t, err)
 
 	require.Equal(t, privateKeyBytes, privateKey2Bytes)
+}
+
+func TestPrivateKeyMarshalingLoopy(t *testing.T) {
+	for i := 0; i < 10; i++ {
+		TestPrivateKeyMarshaling(t)
+	}
 }
 
 func TestNIKE(t *testing.T) {
@@ -67,4 +79,10 @@ func TestNIKE(t *testing.T) {
 	require.NoError(t, err)
 
 	require.Equal(t, bobSharedBytes, aliceSharedBytes)
+}
+
+func TestNIKELoopy(t *testing.T) {
+	for i := 0; i < 10; i++ {
+		TestNIKE(t)
+	}
 }
